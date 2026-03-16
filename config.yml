@@ -1,0 +1,70 @@
+MODE: 1             # 1: train, 2: test, 3: eval
+MODEL: 1            # 2: train the inpaint model 3: load transformer, train encoder and decoder 5: train transformer 6: train reconstructor 
+SEED: 10           # random seed
+GPU: [0]            # list of gpu ids
+DEBUG: 0            # turns on debugging mode
+VERBOSE: 0          # turns on verbose mode in the output console
+TEST_MODE: hazy     # hazy, clean, pair_test
+TRAIN_CLEAN_FLIST: ./datasets/foggycityscape_train_clean.flist
+TRAIN_HAZY_FLIST: ./datasets/foggycityscape_train_hazy.flist
+TEST_HAZY_FLIST: ./datasets/foggycityscape_test_hazy.flist
+TEST_CLEAN_FLIST: ./datasets/foggycityscape_test_clean.flist
+VAL_HAZY_FLIST: ./datasets/foggycityscape_val_hazy.flist
+VAL_CLEAN_FLIST: ./datasets/foggycityscape_val_clean.flist
+
+SEG_DATASET: CITYSCAPES
+DATASET: CITYSCAPES
+USE_SKY_MASK: 1
+
+
+LR: 0.0001
+WEIGHT_DECAY: 0                   # learning rate
+D2G_LR: 0.1                   # discriminator/generator learning rate ratio
+BETA1: 0.9                    # adam optimizer beta1
+BETA2: 0.999                    # adam optimizer beta2
+BATCH_SIZE: 1                 # input batch size for training1
+CROP_SIZE:  256               # input image size for training 0 for original size
+
+
+
+NORM_TYPE: instance
+MAX_ITERS: 1500000                # maximum number of iterations to train the model
+BASE_CHANNEL_NUM: 64
+BLOCK_NUM: 4
+NEIGHBOUR_NUM: 0
+USE_COSDECAY: 1
+
+IS_DEBUG: 0
+MIN_BETA: 0.2
+MAX_BETA: 1.0
+T_MAX: 400
+
+
+GAN_LOSS_WEIGHT: 0.3
+SEGMENT_GAN_LOSS_WEIGHT: 0
+PERCEPTUAL_LOSS_WEIGHT: 0
+CYCLE_LOSS_WEIGHT: 1
+#ONEWAY_HUE_LOSS_WEIGHT: 0.5
+HUE_LOSS_WEIGHT: 0
+SEGMENT_ENTROPY_LOSS_WEIGHT: 0.1
+DARK_CHANNEL_LOSS_WEIGHT: 0.15
+MIN_T: 0.2
+MAX_T: 0.8
+
+
+
+#CONTRAST_LOSS_WEIGHT: 0.0002
+
+TV_LOSS_WEIGHT: 0.2
+IDENTITY_LOSS_WEIGHT: 1
+GRAY_WORLD_LOSS_WEIGHT: 0
+
+
+GAN_LOSS: lsgan               # nsgan | lsgan | hinge
+GAN_POOL_SIZE: 0              # fake images pool size
+
+SAVE_INTERVAL: 2000           # how many iterations to wait before saving model (0: never)
+SAMPLE_INTERVAL: 2000       # how many iterations to wait before sampling (0: never)
+SAMPLE_SIZE: 1               # number of images to sample
+EVAL_INTERVAL: 2000            # how many iterations to wait before model evaluation (0: never)
+LOG_INTERVAL: 500              # how many iterations to wait before logging training status (0: never)
